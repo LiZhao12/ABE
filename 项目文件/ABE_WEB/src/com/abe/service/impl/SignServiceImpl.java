@@ -8,6 +8,7 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -109,7 +110,7 @@ public class SignServiceImpl extends BaseServiceImpl implements iSignService{
 			}else {
 				respSignIn.setResult("001");
 				u.setUPass(null);//去掉密码信息
-				String ip=MachineCode.getIpAddr(request);
+				String ip=MachineCode.getIpAdd(request);
 				String licence=TokenProccessor.getInstance().makeToken();
 				Date dateStart=new Date();
 				Date dateEnd=getEndDate(dateStart);
@@ -262,23 +263,19 @@ public class SignServiceImpl extends BaseServiceImpl implements iSignService{
 		return updateUser;
 	}
 	
-	public RespUpdateUser updateUser2(String UName,String UType,Timestamp UCreateTime,
-			String UPhotoPath,String UNote,String UNum,String UId,String trpId){
-		Users u = (Users) get(Users.class, UId);
-		if (u!=null) {
-			if (UName!=null)u.setUName(UName);
-			if (UPhotoPath!=null)u.setUPhotoPath(UPhotoPath);
-			if (UNote!=null)u.setUNote(UNote);
-			if (UType!=null)u.setUType(UType);
-			if (UCreateTime!=null)u.setUCreateTime(UCreateTime);
-			if (trpId!=null)u.setTrpId(trpId);
-			if (UNum!=null)u.setUNum(UNum);
-			if (UId!=null)u.setUId(UId);
-			update(u);
-			RespUpdateUser updateUser = new RespUpdateUser(); 
-			updateUser.setResult("001");
-			updateUser.setData(u);
-			return updateUser;
+	public RespUpdateUser updateUser2(String UId,String UName){
+		if (UId!=null && UName!=null) {
+			Users u = (Users) get(Users.class, UId);
+			if (u!=null) {
+				if (UName!=null)u.setUName(UName);
+				update(u);
+				RespUpdateUser updateUser = new RespUpdateUser(); 
+				updateUser.setResult("001");
+				updateUser.setData(u);
+				return updateUser;
+			}
+		}else {
+			return new RespUpdateUser("002", null);
 		}
 		return null;
 	}

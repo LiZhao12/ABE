@@ -71,8 +71,7 @@ public interface iSignService {
 	 * @param User
 	 */
 	public RespUpdateUser updateUser1(String UNum);
-	public RespUpdateUser updateUser2(String UName,String UType,Timestamp UCreateTime,
-			String UPhotoPath,String UNote,String UNum,String UId,String trpId);
+	public RespUpdateUser updateUser2(String UName,String UId);
 	/**
 	 *  app查询个人信息资料
 	 *  卢江林

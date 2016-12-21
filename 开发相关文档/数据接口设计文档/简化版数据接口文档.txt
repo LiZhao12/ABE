@@ -114,14 +114,8 @@ URL:http://zhangshun-zs1994.oicp.net:15202/ABE_WEB/app/one!uploadPhoto
 接口地址：http://zhangshun-zs1994.oicp.net:15202/ABE_WEB/app/one!updateUserFromApp2
 请求参数：
 	licence:数字执照
-	UId:用户编号
-	UNum:账号
+	UId:账号id
 	UName:姓名
-	UType:用户类型，1家长，2教职员工
-	UCreateTime:创建时间
-	UPhotoPath:头像的路径
-	UNote:备注
-	trpId:用户档案ID
 应答参数：
 {
    result：001成功，002失败
